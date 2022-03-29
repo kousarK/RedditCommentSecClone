@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "reddit-comment-sec",
+    "slug": "reddit-comment-sec",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "reddit-comment-sec"
+}
