@@ -7,7 +7,6 @@ const AddComment = () => {
       style={{
         position: "absolute",
         bottom: 0,
-        paddingBottom: 40,
         backgroundColor: "#252525",
         width: "100%",
         paddingTop: 10,
