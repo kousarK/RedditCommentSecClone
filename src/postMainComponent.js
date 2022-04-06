@@ -5,8 +5,22 @@ import AddComment from "./AddComment";
 import PostContent from "./PostContent";
 import Entypo from "react-native-vector-icons/Entypo";
 import CommentComponent from "./CommentComponent";
+import axios from "axios";
 
 const PostMainComponent = () => {
+  React.useEffect(()=>{
+    console.log("use Effect");
+    getMoviesFromApi()
+  },[]);
+
+  const getMoviesFromApi = () => {
+      console.log("getMoviesFromApi");
+      axios.get('http://localhost:9000/alien?id=21',{}).then((response)=>{
+        console.log("response >>>>>",response.data)
+      }).catch((err)=>{
+
+      })
+  };
   return (
     <View style={{ height: "100%" }}>
       <TopMenuBar />
