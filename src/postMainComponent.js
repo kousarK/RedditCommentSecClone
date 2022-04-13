@@ -22,7 +22,7 @@ const PostMainComponent = () => {
   const getMoviesFromApi = () => {
     console.log("getMoviesFromApi");
     axios
-      .get("http://localhost:9000/alien?id=21", {})
+      .get("http://localhost:9000/comments", {})
       .then((response) => {
         console.log("response >>>>>", response.data);
       })
