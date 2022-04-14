@@ -16,15 +16,18 @@ import axios from "axios";
 const PostMainComponent = () => {
   React.useEffect(() => {
     console.log("use Effect");
-    getMoviesFromApi();
+    getCommmentsFromApi();
   }, []);
 
-  const getMoviesFromApi = () => {
-    console.log("getMoviesFromApi");
+  const [commentsUnderThePost, setcommentsUnderThePost] = React.useState([]);
+  const [postId, setpostId] = React.useState("postId01");
+
+  const getCommmentsFromApi = () => {
     axios
       .get("http://localhost:9000/comments", {})
       .then((response) => {
         console.log("response >>>>>", response.data);
+        setcommentsUnderThePost(response.data)
       })
       .catch((err) => {});
   };
@@ -50,10 +53,13 @@ const PostMainComponent = () => {
           />
         </TouchableOpacity>
         {/* comment sorting */}
-        <CommentComponent />
+        {commentsUnderThePost.map((comment)=>{
+          return <CommentComponent commentDetails={comment} key={comment.id}/>
+        })}
+        {/* <CommentComponent />
         <CommentComponent subcoment={true} />
         <CommentComponent />
-        <CommentComponent />
+        <CommentComponent /> */}
       </ScrollView>
       <AddComment />
     </View>

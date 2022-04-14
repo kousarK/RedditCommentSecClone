@@ -3,7 +3,13 @@ import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
 
-const CommentComponent = ({ subcoment = false }) => {
+const CommentComponent = ({ subcoment = false, commentDetails = {} }) => {
+  function kFormatter(num) {
+    return Math.abs(num) > 999
+      ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "K"
+      : Math.sign(num) * Math.abs(num);
+  }
+
   return (
     <View style={{ backgroundColor: "#252525", marginVertical: 5 }}>
       <View
@@ -22,7 +28,7 @@ const CommentComponent = ({ subcoment = false }) => {
         <View style={{ paddingLeft: 10, alignItems: "center" }}>
           <View style={{ flexDirection: "row" }}>
             <Text style={{ color: "#8f9091", fontWeight: "600", fontSize: 12 }}>
-              skyandsunshine123
+              {commentDetails.postedBy}
             </Text>
             <View
               style={{
@@ -39,11 +45,7 @@ const CommentComponent = ({ subcoment = false }) => {
         </View>
       </View>
       <View style={{ paddingHorizontal: 10, paddingBottom: 10 }}>
-        <Text style={{ color: "white" }}>
-          Office space!!! Literally just got done watching it for like the 10th
-          time. Way ahead of it’s time, such amazing deadpan humor. Would love
-          any recommendations similar to this movie’s kind of comedy
-        </Text>
+        <Text style={{ color: "white" }}>{commentDetails.body}</Text>
       </View>
       <View
         style={{
@@ -67,7 +69,7 @@ const CommentComponent = ({ subcoment = false }) => {
         </View>
         <View style={[styles.statsInduvidualRow]}>
           <Entypo name="arrow-up" style={styles.iconStyle} />
-          <Text style={styles.statsRowText}>41.6K</Text>
+          <Text style={styles.statsRowText}>{kFormatter(commentDetails.upvoteCount)}</Text>
           <Entypo name="arrow-down" style={styles.iconStyle} />
         </View>
       </View>
